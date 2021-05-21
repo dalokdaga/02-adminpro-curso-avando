@@ -1,3 +1,4 @@
+import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 // componentes
@@ -9,12 +10,13 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 
 const routes: Routes = [
     {
-        path: 'dashboard', 
+        path: 'dashboard',
         component:PagesComponent,
         children:[
             { path: '', component: DashboardComponent  },
             { path: 'progress', component: ProgressComponent },
-            { path: 'grafica1', component: Grafica1Component },            
+            { path: 'grafica1', component: Grafica1Component },
+            { path: 'settings', component:AcountSettingsComponent}
         ]
     },
 
