@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ChartType } from 'chart.js';
-import { MultiDataSet, Label, Color } from 'ng2-charts';
+import { Label, MultiDataSet } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-grafica1',
@@ -9,22 +9,23 @@ import { MultiDataSet, Label, Color } from 'ng2-charts';
   ]
 })
 export class Grafica1Component {
-  // Doughnut
-  public doughnutChartLabels: Label[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: MultiDataSet = [
+  labels1: Label[]= ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public data1:MultiDataSet= [
     [350, 450, 100],
   ];
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
+  labels2: Label[]= ['Estacionario', 'Portátil', 'Carburación'];
+  public data2:MultiDataSet= [
+    [50, 30, 20],
+  ];
 
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
+  labels3: Label[]= ['Pemex', 'Propangol', 'Barco'];
+  public data3:MultiDataSet= [
+    [6000, 3000, 1000],
+  ];
 
-  public colors:Color[] = [
-    {backgroundColor:['#135AF3','#FE4167','#2FFB1B']}
-  ]
+  labels4: Label[]= ['Anden', 'Bascula', 'Pipaa'];
+  public data4:MultiDataSet= [
+    [100, 10, 30],
+  ];
 }

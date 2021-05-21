@@ -29,11 +29,10 @@ import { ProgressComponent } from './progress/progress.component';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule,
     FormsModule,
     ComponentsModule,
-    ChartsModule
+    SharedModule
   ]
 })
 export class PagesModule { }
