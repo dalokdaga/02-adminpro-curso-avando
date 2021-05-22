@@ -6,6 +6,8 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
+import { PromesasComponent } from './promesas/promesas.component';
+import { XrjsComponent } from './xrjs/xrjs.component';
 
 
 const routes: Routes = [
@@ -13,10 +15,13 @@ const routes: Routes = [
         path: 'dashboard',
         component:PagesComponent,
         children:[
-            { path: '', component: DashboardComponent  },
-            { path: 'progress', component: ProgressComponent },
-            { path: 'grafica1', component: Grafica1Component },
-            { path: 'settings', component:AcountSettingsComponent}
+            { path: '', component: DashboardComponent, data:{titulo:'Dashboard'}},
+            { path: 'progress', component: ProgressComponent,data:{titulo:'ProgressBar'} },
+            { path: 'grafica1', component: Grafica1Component,data:{titulo:'Grafica #1'} },
+            { path: 'settings', component: AcountSettingsComponent,data:{titulo:'Settings'}},
+            { path: 'promesas', component: PromesasComponent,data:{titulo:'Promesas'}},
+            { path: 'xrjs', component: XrjsComponent,data:{titulo:'XRJS'}}
+
         ]
     },
 
