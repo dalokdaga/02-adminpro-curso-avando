@@ -1,20 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { ChartsModule } from 'ng2-charts';
-// modulos
+// Modulos
 import { SharedModule } from '../shared/shared.module';
-import { ComponentsModule } from './../components/components.module';
-//Componentes
+import { ComponentsModule } from '../components/components.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PagesComponent } from './pages.component';
-import { ProgressComponent } from './progress/progress.component';
-import { AcountSettingsComponent } from './acount-settings/acount-settings.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
-import { XrjsComponent } from './xrjs/xrjs.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
+
 
 
 @NgModule({
@@ -23,23 +25,25 @@ import { XrjsComponent } from './xrjs/xrjs.component';
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AcountSettingsComponent,
+    AccountSettingsComponent,
     PromesasComponent,
-    XrjsComponent
+    RxjsComponent,
+    PerfilComponent,
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AcountSettingsComponent
+    AccountSettingsComponent
   ],
-  imports: [
+  imports: [ 
     CommonModule,
-    RouterModule,
     FormsModule,
-    ComponentsModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    RouterModule,
+    ComponentsModule
   ]
 })
 export class PagesModule { }

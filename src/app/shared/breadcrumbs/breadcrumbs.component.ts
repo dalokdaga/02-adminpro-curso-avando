@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Router, ActivationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -9,27 +9,34 @@ import { filter, map } from 'rxjs/operators';
   styles: [
   ]
 })
-export class BreadcrumbsComponent implements OnDestroy{
+export class BreadcrumbsComponent implements OnDestroy {
+
   public titulo: string;
-  public titulosubs$: Subscription;
-  constructor( private router:Router ) { 
-    this.titulosubs$ = this.getArgumentoRuta().
-      subscribe(({titulo}) =>{
-        this.titulo = titulo;
-        document.title = `AdminPro - ${titulo}` ;
-      });
+  public tituloSubs$: Subscription;
+
+  
+  constructor( private router: Router, private route: ActivatedRoute ) {
+
+    this.tituloSubs$ = this.getArgumentosRuta()
+                        .subscribe( ({ titulo }) => {
+                            this.titulo = titulo;
+                            document.title = `AdminPro - ${ titulo }`;
+                        });
   }
   ngOnDestroy(): void {
-    this.titulosubs$.unsubscribe();
+    this.tituloSubs$.unsubscribe();
   }
 
-  getArgumentoRuta(){
+
+  getArgumentosRuta() {
+
     return this.router.events
-    .pipe(
-      filter(event=> event instanceof ActivationEnd),
-      filter((event:ActivationEnd)=> event.snapshot.firstChild === null),
-      map((event:ActivationEnd)=> event.snapshot.data)
-    )
+      .pipe(
+        filter( event => event instanceof ActivationEnd ),
+        filter( (event: ActivationEnd) => event.snapshot.firstChild === null  ),
+        map( (event: ActivationEnd) => event.snapshot.data ),
+      );
   }
+
 
 }

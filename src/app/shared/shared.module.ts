@@ -7,13 +7,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
 
 
+
 @NgModule({
   declarations: [
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,
   ],
-  exports:[
+  exports: [
     BreadcrumbsComponent,
     SidebarComponent,
     HeaderComponent,

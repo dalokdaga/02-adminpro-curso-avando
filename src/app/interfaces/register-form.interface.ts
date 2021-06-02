@@ -1,7 +1,9 @@
+
+
 export interface RegisterForm {
-    email:     string;
-    nombre:    string;
-    password:  string;
+    nombre: string;
+    email: string;
+    password: string;
     password2: string;
-    terminos:  boolean;
+    terminos: boolean;
 }

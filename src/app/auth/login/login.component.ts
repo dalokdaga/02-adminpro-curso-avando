@@ -1,57 +1,59 @@
-import { Component, NgZone, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2'
+import { FormBuilder, Validators } from '@angular/forms';
+import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2';
 
-import { UsuarioService } from 'src/app/services/usuario.service';
-
-// declaramos gapi para la autenticacion de google
-declare const gapi : any;
+declare const gapi:any;
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: [ './login.component.css' ]
 })
 export class LoginComponent implements OnInit {
+
   public formSubmitted = false;
-  public auth2:any;
+  public auth2: any;
+
   public loginForm = this.fb.group({
-    email    :[localStorage.getItem('email') || '', [Validators.required,Validators.email]],
-    password :['',[Validators.required]],
-    remember :[false]
+    email: [ localStorage.getItem('email') || '' , [ Validators.required, Validators.email ] ],
+    password: ['', Validators.required ],
+    remember: [false]
   });
-  constructor(private router: Router, 
-              private fb: FormBuilder,
-              private usuarioService: UsuarioService,
-              private ngZone: NgZone ) { }
+
+
+  constructor( private router: Router,
+               private fb: FormBuilder,
+               private usuarioService: UsuarioService,
+               private ngZone: NgZone ) { }
 
   ngOnInit(): void {
     this.renderButton();
   }
 
-  login(){
-    //log(this.loginForm.value);
-    // validacion del formulario
-    this.usuarioService.login(this.loginForm.value)
-    .subscribe(resp =>{
-        if (this.loginForm.get('remember').value) {
-          localStorage.setItem('email',this.loginForm.get('email').value)
+
+  login() {
+
+    this.usuarioService.login( this.loginForm.value )
+      .subscribe( resp => {
+
+        if ( this.loginForm.get('remember').value ){ 
+          localStorage.setItem('email', this.loginForm.get('email').value );
         } else {
           localStorage.removeItem('email');
-        }   
-      this.router.navigateByUrl('/');
-          
-        },(err)=>{
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: err.error.msg
-          });
-        });
+        }
+
+        // Navegar al Dashboard
+        this.router.navigateByUrl('/');
+
+      }, (err) => {
+        // Si sucede un error
+        Swal.fire('Error', err.error.msg, 'error' );
+      });
+
   }
-
-
+  
   renderButton() {
     gapi.signin2.render('my-signin2', {
       'scope': 'profile email',
@@ -92,4 +94,5 @@ export class LoginComponent implements OnInit {
             alert(JSON.stringify(error, undefined, 2));
         });
   }
+
 }
