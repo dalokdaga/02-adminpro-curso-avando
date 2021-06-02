@@ -8,12 +8,14 @@ import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { XrjsComponent } from './xrjs/xrjs.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 const routes: Routes = [
     {
         path: 'dashboard',
         component:PagesComponent,
+        canActivate:[AuthGuard],
         children:[
             { path: '', component: DashboardComponent, data:{titulo:'Dashboard'}},
             { path: 'progress', component: ProgressComponent,data:{titulo:'ProgressBar'} },
