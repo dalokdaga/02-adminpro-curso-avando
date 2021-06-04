@@ -10,6 +10,8 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
 
 import { Usuario } from '../models/usuario.model';
+import { Getusuarios } from '../models/get-usuarios.models';
+import { resBorrado } from '../models/borrado.models';
 
 const base_url = environment.base_url;
 
@@ -38,10 +40,18 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  get headers() {
+    return { 
+      headers: 
+      {
+        'x-token': this.token
+      }
+    }
+  }
 
   googleInit() {
 
-    return new Promise( resolve => {
+    return new Promise<void>( resolve => {
       gapi.load('auth2', () => {
         this.auth2 = gapi.auth2.init({
           client_id: '172828574499-m6k9tjb7s8hsftq60s3bhtuhbke6nmtj.apps.googleusercontent.com',
@@ -103,11 +113,7 @@ export class UsuarioService {
       role: this.usuario.role
     };
 
-    return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+    return this.http.put(`${ base_url }/usuarios/${ this.uid }`, data,this.headers);
 
   }
 
@@ -133,6 +139,32 @@ export class UsuarioService {
 
   }
 
-  
+  cargarUsuarios(desde: number = 0):Observable<Getusuarios>{
+    // http://localhost:3000/api/usuarios?desde=5
+
+    const url = `${base_url}/usuarios?desde=${desde}`;
+    return this.http.get<Getusuarios>(url, this.headers);
+                // .pipe(
+                //   delay(5000)
+                // );
+  }
+
+  eliminarUsuario(id:string):Observable<resBorrado> {
+    // /usuarios/60aada1c85af44047897e29d
+    const url = `${base_url}/usuarios/${id}`;
+    return this.http.delete<resBorrado>(url, this.headers);
+
+  }
+
+  actualizarUsuario( data:Usuario) {
+
+    // data = {
+    //   ...data,
+    //   role: this.usuario.role
+    // };
+
+    return this.http.put(`${ base_url }/usuarios/${ data.uid }`, data,this.headers);
+
+  }
 
 }

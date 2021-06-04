@@ -15,6 +15,12 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { ImagenPipe } from '../pipes/imagen.pipe';
+
+
 
 
 
@@ -29,13 +35,20 @@ import { PerfilComponent } from './perfil/perfil.component';
     PromesasComponent,
     RxjsComponent,
     PerfilComponent,
+    UsuariosComponent,
+    MedicosComponent,
+    HospitalesComponent,
+    ImagenPipe,
+    
   ],
   exports: [
     DashboardComponent,
     ProgressComponent,
     Grafica1Component,
     PagesComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    UsuariosComponent,
+    
   ],
   imports: [ 
     CommonModule,
@@ -43,7 +56,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     ReactiveFormsModule,
     SharedModule,
     RouterModule,
-    ComponentsModule
-  ]
+    ComponentsModule,
+  ],
+  providers:[ImagenPipe]
+
 })
 export class PagesModule { }
