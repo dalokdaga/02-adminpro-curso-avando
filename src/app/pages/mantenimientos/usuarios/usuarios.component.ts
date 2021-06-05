@@ -48,7 +48,6 @@ export class UsuariosComponent implements OnInit, OnDestroy {
         this.usuarios = usuarios;                
         this.usuariosTemp =usuarios;
       }      
-      console.log(this.usuarios);
     });
   }
 
@@ -102,10 +101,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   cambiarRole(usuario: Usuario){
-    console.log(usuario);
     this.usuarioService.actualizarUsuario(usuario)
-        .subscribe(resp=>{
-          console.log(resp);
+        .subscribe(resp=>{          
         })
   }
 

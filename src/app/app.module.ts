@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 
 import { AppComponent } from './app.component';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
+// import { ImagenPipe } from './pipes/imagen.pipe';
 
 
 
@@ -16,14 +17,17 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NopagefoundComponent,    
+    NopagefoundComponent,
+     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    AuthModule
+    AuthModule,
+
   ],
+  providers:[],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

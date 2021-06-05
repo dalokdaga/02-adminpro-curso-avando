@@ -6,16 +6,16 @@ import { environment } from 'src/environments/environment';
 })
 export class ImagenPipe implements PipeTransform {
 
-  transform(img: string ): string {
+  transform(img: string, tipo:'usuarios'|'medicos'|'hospitales' ): string {
     const base_url = environment.base_url;
     if (img) {
       if (img.includes('https')) {
         return img;
       } else {
-        return `${ base_url }/upload/usuarios/${ img }`;
+        return `${ base_url }/upload/${tipo}/${ img }`;
       }
     }else{
-      return `${ base_url }/upload/usuarios/no-image`;
+      return `${ base_url }/upload/${tipo}/no-image`;
     }
   }
 

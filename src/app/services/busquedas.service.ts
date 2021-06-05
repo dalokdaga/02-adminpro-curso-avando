@@ -30,7 +30,7 @@ export class BusquedasService {
   }
 
   busquedas(tipo: 'usuarios'|'medicos'|'hospitales',
-                 termino: string ):Observable<Usuario[]>{
+                 termino: string ):Observable<any[]>{
     // http://localhost:3000/api/usuarios?desde=5
 
     const url = `${base_url}/todo/coleccion/${tipo}/${termino}`;
