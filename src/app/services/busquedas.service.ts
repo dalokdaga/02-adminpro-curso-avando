@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Busqueda } from '../models/busqueda.models';
 import { Getusuarios } from '../models/get-usuarios.models';
+import { ResponseBusquedaGeneral } from '../models/responseBusquedaGeneral.model';
+import { ResponseActMedico } from '../models/responseMedicos.models';
 import { Usuario } from '../models/usuario.model';
 
 const base_url = environment.base_url;
@@ -40,5 +42,10 @@ export class BusquedasService {
                   );
 
 
+  }
+
+  busquedaGeneral(termino:string):Observable<ResponseBusquedaGeneral>{
+    const url = `${base_url}/todo/${termino}`
+    return this.http.get<ResponseBusquedaGeneral>(url,this.headers)
   }
 }
